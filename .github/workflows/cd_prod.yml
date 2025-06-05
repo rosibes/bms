@@ -1,4 +1,4 @@
-name: Deploy to staging
+name: Deploy to stagingAdd commentMore actions
 on:
   push:
     branches:
@@ -6,13 +6,17 @@ on:
 
 jobs:
   redeploy_everything:
-    name: Deploying everything to the staging cluster
     runs-on: ubuntu-latest
+    name: Deploying everything to the staging cluster
 
     steps:
       - name: SSH into server
-      - run: 
-          echo "debugging pipeline"
-
-
-
+      - run: |
+          echo  {{ secrets.SSH_PRIVATE_KEY }} &> ~/ssh_key
+          ssh -i ~/ssh_key ubuntu@34.207.129.249
+          cd bms/ && git pull
+          pnpm install
+          pnpm run buildAdd commentMore actions
+          pm2 restart web
+          pm2 restart http-server
+          pm2 restart ws-server
