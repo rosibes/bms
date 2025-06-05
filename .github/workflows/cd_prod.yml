@@ -21,10 +21,10 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -i ~/ssh_key ubuntu@34.207.129.249 '
+          ssh -i ~/ssh_key ubuntu@34.207.129.249 -t "
             cd ~/bms &&
             git pull &&
             pnpm install &&
             pnpm run build &&
             pm2 restart all
-          '
+          "
