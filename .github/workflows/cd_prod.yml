@@ -15,10 +15,11 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
           ssh-keyscan -H 34.207.129.249 >> ~/.ssh/known_hosts
-          ssh -i ~/ssh_key ubuntu@34.207.129.249
+          ssh -i ~/ssh_key ubuntu@34.207.129.249 '
           cd ~/bms/ && git pull
           pnpm install
           pnpm run build
           pm2 restart web
           pm2 restart http-server
           pm2 restart ws-server
+          '
