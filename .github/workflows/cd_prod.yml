@@ -22,15 +22,9 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -i ~/ssh_key ubuntu@34.207.129.249 '
-            echo "Starting deployment..." &&
             cd ~/bms &&
-            echo "Pulling latest changes..." &&
             git pull &&
-            echo "Installing dependencies..." &&
             pnpm install &&
-            echo "Building project..." &&
             pnpm run build &&
-            echo "Restarting services..." &&
-            pm2 restart all &&
-            echo "Deployment completed!"
+            pm2 restart all
           '
