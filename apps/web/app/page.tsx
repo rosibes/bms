@@ -9,7 +9,7 @@ export default async function Home() {
       nouNou
       {user?.username}
       {user?.password}
-      asdasdasdas
+      test
     </div>
   );
 }
