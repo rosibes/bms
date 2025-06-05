@@ -17,11 +17,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh-keyscan -H 3.83.22.69 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 54.196.104.154 >> ~/.ssh/known_hosts
 
       - name: Deploy to server
         run: |
-          ssh -i ~/ssh_key ubuntu@3.83.22.69 -t "
+          ssh -i ~/ssh_key ubuntu@54.196.104.154 -t "
             cd ~/bms &&
             git pull origin main &&
             export PATH=/home/ubuntu/.nvm/versions/node/v22.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin &&
