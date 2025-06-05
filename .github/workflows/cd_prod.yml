@@ -23,7 +23,7 @@ jobs:
         run: |
           ssh -i ~/ssh_key ubuntu@34.207.129.249 -t "
             cd ~/bms &&
-            git pull &&
+            git pull origin main &&
             pnpm install &&
             pnpm run build &&
             pm2 restart all
