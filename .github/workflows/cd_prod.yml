@@ -24,6 +24,7 @@ jobs:
           ssh -i ~/ssh_key ubuntu@34.207.129.249 -t "
             cd ~/bms &&
             git pull origin main &&
+            export PATH=/home/ubuntu/.nvm/versions/node/v22.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin &&
             pnpm install &&
             pnpm run build &&
             pm2 restart all
