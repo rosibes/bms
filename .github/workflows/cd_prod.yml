@@ -12,7 +12,9 @@ jobs:
       - name: SSH into server
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+          chmod 600 ~/ssh_key
           ssh -i ~/ssh_key ubuntu@34.207.129.249
+          ssh-keyscan -H 34.207.129.249 >> ~/.ssh/known_hosts
           cd ~/bms/ && git pull
           pnpm install
           pnpm run build
