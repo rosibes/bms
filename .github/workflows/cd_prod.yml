@@ -1,8 +1,7 @@
 name: Deploy to stagingAdd commentMore actions
 on:
   push:
-    branches:
-      - "main"
+    branches: [ main ]
 
 jobs:
   redeploy_everything:
@@ -11,12 +10,12 @@ jobs:
 
     steps:
       - name: SSH into server
-      - run: |
+        run: |
           echo  {{ secrets.SSH_PRIVATE_KEY }} &> ~/ssh_key
           ssh -i ~/ssh_key ubuntu@34.207.129.249
           cd bms/ && git pull
           pnpm install
-          pnpm run buildAdd commentMore actions
+          pnpm run build
           pm2 restart web
           pm2 restart http-server
           pm2 restart ws-server
